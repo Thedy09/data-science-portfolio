@@ -1,0 +1,93 @@
+// Configuration du template HTML pour les rapports
+const HTML_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="{{ css_path }}" rel="stylesheet">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>{{ title }}</h1>
+            <p>Généré le {{ date }} | v{{ version }}</p>
+        </header>
+
+        <div class="card">
+            <h2>📊 Aperçu des Données</h2>
+            <div class="stats-grid">
+                {{ dataset_stats }}
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📈 Visualisations</h2>
+            {{ visualizations }}
+        </div>
+
+        <div class="card">
+            <h2>🔍 Analyses Statistiques</h2>
+            {{ statistical_analysis }}
+        </div>
+
+        {% if ml_results %}
+        <div class="card">
+            <h2>🤖 Résultats Machine Learning</h2>
+            {{ ml_results }}
+        </div>
+        {% endif %}
+
+        {% if ai_insights %}
+        <div class="card">
+            <h2>💡 Insights IA</h2>
+            {{ ai_insights }}
+        </div>
+        {% endif %}
+
+        <footer class="footer">
+            <p>Généré par Data Science Bot Enhanced v{{ version }}</p>
+            <p>© {{ year }} - Tous droits réservés</p>
+        </footer>
+    </div>
+
+    <script>
+        // Animation smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Lazy loading des visualisations
+        const observerOptions = {
+            root: null,
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                    }
+                    observer.unobserve(iframe);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.visualization iframe').forEach(iframe => {
+            observer.observe(iframe);
+        });
+    </script>
+</body>
+</html>
+`;
