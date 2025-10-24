@@ -13,7 +13,7 @@ A powerful, AI-powered Telegram bot that provides comprehensive data analysis, m
 - **💡 AI Insights**: GPT-powered analysis summaries and recommendations
 - **📄 Multi-format Reports**: HTML, PDF, and comprehensive ZIP bundles
 
-### 🚀 **Enhanced Features (v2.0)**
+### 🚀 **Enhanced Features **
 - **🎮 Interactive UI**: Button-based navigation and real-time progress tracking
 - **⚙️ Customizable Settings**: Toggle ML models, AI summaries, and advanced statistics
 - **📊 Advanced Statistics**: Normality tests, correlation analysis, outlier detection
